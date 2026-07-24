@@ -35,6 +35,9 @@ function User_Header() {
                                 <Link to="/causes" className="nav-link"> Causes</Link>
                             </li>
                             <li className="nav-item">
+                                <Link to="/category" className="nav-link"> Category</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link to="/donate" className="nav-link"> Donate </Link>
                             </li>
                             <li className="nav-item">
@@ -44,7 +47,7 @@ function User_Header() {
                                 <Link to="/gallery" className="nav-link">Gallery</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/event" className="nav-link"> Events</Link>
+                                <Link to="/events" className="nav-link"> Events</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/contact" className="nav-link"> Contact</Link>

@@ -2,6 +2,11 @@ export class CampaignModel{
     CategoryId=""
     Title=""
     Description=""
+    Progress= ""
+    TargetAmount=""
+    CollectedAmount=""
+    ImageUrl=""
     status= true
-    createAt= new Date
+    createdAt= new Date
+    updatedAt= new Date
 }

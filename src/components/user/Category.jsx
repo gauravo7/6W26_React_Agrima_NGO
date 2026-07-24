@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import CampaignServices from "../../services/CampaignServices";
+import CategoryServices from "../../services/CategoryServices";
 
-export default function Causes() {
+export default function Category() {
 
-  const [campaigns, setCampaigns] = useState([]);
+  const [Category, setCategory] = useState([]);
 
   useEffect(() => {
-    fetchCampaigns();
+    FatchCategory();
   }, [])
 
-  const fetchCampaigns = async () => {
+  const FatchCategory= async () => {
     try {
-      const data = await CampaignServices.all();
-      setCampaigns(data);
+      const data = await CategoryServices.all();
+      setCategory(data);
 
     } catch (error) {
       console.log(error);
@@ -43,13 +44,13 @@ export default function Causes() {
                 <span className="mr-2">
                   <a href="index.html">Home</a>
                 </span>{" "}
-                <span>Causes</span>
+                <span>Category</span>
               </p>
               <h1
                 className="mb-3 bread"
                 data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
               >
-                Causes
+                Category
               </h1>
             </div>
           </div>
@@ -62,57 +63,18 @@ export default function Causes() {
           <div className="row">
 
             {
-              campaigns.map((item) => {
-                const progress =
-                  Number(item.TargetAmount) > 0
-                    ? Math.min(
-                      (Number(item.CollectedAmount) / Number(item.TargetAmount)) * 100,
-                      100
-                    )
-                    : 0;
-
-
-                console.log(progress);
-
-                console.log("Target:", item.TargetAmount);
-                console.log("Collected:", item.CollectedAmount);
-                console.log(typeof item.TargetAmount);
-                console.log(typeof item.CollectedAmount);
+              Category.map((item) => {
 
                 return (
-                  <div className="col-md-4 ftco-animate" key={item.id}>
+                  <div className="col-md-4 ftco-animate">
                     <div className="cause-entry">
-                      <a
-                        href="#"
-                        className="img"
-                        style={{
-                          backgroundImage: `url(${item.ImageUrl})`,
-                        }}
-                      />
 
                       <div className="text p-3 p-md-4">
                         <h3>
-                          <a href="#">{item.Title}</a>
+                          <a href="#">{item.CategoryName}</a>
                         </h3>
-
                         <p>{item.Description}</p>
 
-                        <div className="progress custom-progress-success">
-                          <div
-                            className="progress-bar bg-primary"
-                            role="progressbar"
-                            style={{ width: `${progress}%` }}
-                            aria-valuenow={progress}
-                            aria-valuemin={0}
-                            aria-valuemax={100}
-                          >
-                            {/* {progress.toFixed(0)} */}
-                          </div>
-                        </div>
-
-                        <span className="fund-raised d-block">
-                          ₹{item.CollectedAmount} raised of ₹ {item.TargetAmount}
-                        </span>
                       </div>
                     </div>
                   </div>

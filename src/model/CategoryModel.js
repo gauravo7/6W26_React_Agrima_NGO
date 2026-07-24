@@ -1,5 +1,5 @@
 export class CategoryModel{
-    Name=""
+    CategoryName=""
     Description=""
     status= true
     createAt= new Date

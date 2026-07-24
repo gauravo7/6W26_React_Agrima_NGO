@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-export default function Admin_Header(){
-    return(
-        
+export default function Admin_Header() {
+    return (
+
         <>
             <nav
                 className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
@@ -28,13 +28,24 @@ export default function Admin_Header(){
                             <li className="nav-item active">
                                 <Link to="/admin" className="nav-link"> Dashboard </Link>
                             </li>
+
                             <li className="nav-item active">
-                                <Link to="/admin/category/addcategory" className="nav-link"> Category </Link>
+                                <Link to="/admin/category/addcategory" className="nav-link"> Add Category </Link>
                             </li>
                             <li className="nav-item active">
-                                <Link to="/admin/campaign/campaign" className="nav-link"> Campaign </Link>
+                                <Link to="/admin/category/managecategory" className="nav-link"> Manage Category </Link>
                             </li>
+
                             
+
+                            <li className="nav-item active">
+                                <Link to="/admin/campaign/addcampaign" className="nav-link"> Add Campaign </Link>
+                            </li>
+
+                            <li className="nav-item active">
+                                <Link to="/admin/campaign/managecampaign" className="nav-link"> Manage Campaign </Link>
+                            </li>
+
                         </ul>
                     </div>
                 </div>

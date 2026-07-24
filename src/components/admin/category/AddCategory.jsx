@@ -4,14 +4,14 @@ import { toast } from "react-toastify";
 
 export default function AddCategory() {
 
-    const [name, setName] = useState();
-    const [description, setDescription] = useState()
+    const [CategoryName, setCategoryName] = useState();
+    const [Description, setDescription] = useState()
 
     const HandleForm = async (e) => {
         e.preventDefault()
         let data = {
-            name: name,
-            description: description
+            CategoryName: CategoryName,
+            Description: Description
         }
 
         let res = await CategoryServices.AddCollection(data)
@@ -72,9 +72,9 @@ export default function AddCategory() {
                                     <div className="form-group">
                                         <input
                                             type="text"
-                                            value={name}
+                                            value={CategoryName}
                                             onChange={(e) => {
-                                                setName(e.target.value)
+                                                setCategoryName(e.target.value)
                                             }}
                                             className="form-control"
                                             placeholder="category name"
@@ -83,7 +83,7 @@ export default function AddCategory() {
                                     <div className="form-group">
                                         <input
                                             type="text"
-                                            value={description}
+                                            value={Description}
                                             onChange={(e) => {
                                                 setDescription(e.target.value)
                                             }}

@@ -1,9 +1,7 @@
 .contact-card{
 
     border-radius:15px;
-
     transition:.4s;
-
     cursor:pointer;
 
 }
@@ -11,33 +9,193 @@
 .contact-card:hover{
 
     transform:translateY(-10px);
-
     box-shadow:0 15px 35px rgba(0,0,0,.2);
-
 }
 
 .icon{
-
     transition:.4s;
-
 }
 
 .contact-card:hover .icon{
 
     transform:scale(1.3);
-
 }
 
 .contact-hero h1{
 
     text-shadow:2px 2px 10px rgba(0,0,0,.5);
-
 }
 
 .contact-hero p{
 
     max-width:600px;
-
     margin:auto;
+}
+
+.form-control,
+.form-select{
+
+    border-radius:10px;
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    box-shadow:none;
+    border-color:#28a745;
+}
+
+textarea{
+    resize:none;
+}
+
+.social-icon{
+
+    width:60px;
+    height:60px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:#198754;
+    color:#fff;
+    border-radius:50%;
+    font-size:25px;
+    margin:10px;
+    text-decoration:none;
+    transition:.4s;
 
 }
+
+.social-icon:hover{
+
+    background:#145c32;
+    transform:translateY(-8px);
+    color:#fff;
+}
+
+.accordion-button{
+    font-weight:600;
+}
+
+.accordion-button:focus{
+    box-shadow:none;
+}
+
+.feature-card{
+
+    background:#fff;
+    border-radius:20px;
+    transition:.4s;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    height:100%;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-12px);
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+}
+
+/* ===========================
+        OUR IMPACT
+=========================== */
+
+.impact-card{
+
+    background:#fff;
+    border-radius:20px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    transition:.4s;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+
+}
+
+.impact-card::before{
+
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:5px;
+    background:#198754;
+    transform:scaleX(0);
+    transition:.4s;
+
+}
+
+.impact-card:hover::before{
+    transform:scaleX(1);
+}
+
+.impact-card:hover{
+
+    transform:translateY(-12px);
+    box-shadow:0 18px 35px rgba(0,0,0,.18);
+}
+
+.impact-icon{
+
+    width:80px;
+    height:80px;
+    margin:auto;
+    background:#198754;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:35px;
+    margin-bottom:20px;
+    transition:.4s;
+
+}
+
+.impact-card:hover .impact-icon{
+    transform:rotate(360deg);
+}
+
+/* .testimonial-card{
+
+    background:#fff;
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:.4s;
+    height:100%;
+}
+
+.testimonial-card:hover{
+    transform:translateY(-10px);
+} */
+
+.social-card{
+
+    display:block;
+    text-align:center;
+    padding:35px;
+    background:#198754;
+    color:#fff;
+    border-radius:20px;
+    text-decoration:none;
+    transition:.4s;
+    height:100%;
+
+}
+
+.social-card:hover{
+
+    transform:translateY(-12px);
+    background:#146c43;
+    color:#fff;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+
+

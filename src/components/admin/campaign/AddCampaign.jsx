@@ -1,20 +1,36 @@
 import { useState } from "react";
 import CampaignServices from "../../../services/CampaignServices";
 import { toast } from "react-toastify";
+import CloudinaryServices from "../../../services/CloudinaryServices";
+import { log } from "firebase/firestore/pipelines";
 
-export default function Campaign() {
+export default function AddCampaign() {
 
-    const [categoryId, setCategoryId] = useState()
+    const [categoryId, setCategoryId]= useState()
     const [title, setTitle]= useState()
-    const [description, setDescription] = useState()
+    const [discription, setDiscription] = useState()
+    const [targetamount, setTargetAmount]= useState()
+    const [collectedamount, setCollectedAmount]= useState()
+    const [ImageUrl, setImageUrl] = useState()
 
     const HandleForm = async (e) => {
         e.preventDefault()
+
+        let url= await CloudinaryServices.ImageUpload(ImageUrl)
+        console.log(url)
+
         let data = {
-            categoryId: categoryId,
-            title: title,
-            description: description
+            CategoryId: categoryId,
+            Title: title,
+            Description:discription,
+            TargetAmount:targetamount,
+            CollectedAmount: collectedamount,
+            ImageUrl:url,
+
         }
+
+
+        console.log(data)
 
         let res = await CampaignServices.Campaign(data)
         if (res) {
@@ -79,7 +95,7 @@ export default function Campaign() {
                                                 setCategoryId(e.target.value)
                                             }}
                                             className="form-control"
-                                            placeholder="category Id"
+                                            placeholder="Category Id"
                                         />
                                     </div>
                                     <div className="form-group">
@@ -96,14 +112,48 @@ export default function Campaign() {
                                     <div className="form-group">
                                         <input
                                             type="text"
-                                            value={description}
+                                            value={discription}
                                             onChange={(e) => {
-                                                setDescription(e.target.value)
+                                                setDiscription(e.target.value)
                                             }}
                                             className="form-control"
-                                            placeholder="Campaign description"
+                                            placeholder="Campaign discription"
                                         />
                                     </div>
+                                    
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            value={targetamount}
+                                            onChange={(e) => {
+                                                setTargetAmount(e.target.value)
+                                            }}
+                                            className="form-control"
+                                            placeholder="target amount"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            value={collectedamount}
+                                            onChange={(e) => {
+                                                setCollectedAmount(e.target.value)
+                                            }}
+                                            className="form-control"
+                                            placeholder="Collected Amount"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <input
+                                            type="file"
+                                            onChange={(e) => {
+                                                setImageUrl(e.target.files[0])
+                                            }}
+                                            className="form-control"
+                                            placeholder="Campaign discription"
+                                        />
+                                    </div>
+                                    
                                     <div className="form-group">
                                         <input
                                             type="submit"

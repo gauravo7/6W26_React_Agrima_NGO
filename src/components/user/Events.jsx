@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 function Events(){
     return(
         <>
@@ -21,7 +23,7 @@ function Events(){
             data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
           >
             <span className="mr-2">
-              <a href="index.html">Home</a>
+              <Link to="/">Home</Link>
             </span>{" "}
             <span>Event</span>
           </p>
