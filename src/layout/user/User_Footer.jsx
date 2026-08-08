@@ -7,9 +7,11 @@ function User_Footer() {
           <div className="col-md-3">
             <div className="ftco-footer-widget mb-4">
               <h2 className="ftco-heading-2">About Us</h2>
+
               <p>
-                Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia, there live the blind texts.
+                We are a non-profit organization dedicated to improving lives through
+                education, healthcare, environmental conservation, hunger relief,
+                and community development. Together, we create hope and inspire change.
               </p>
               <ul className="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                 <li className="ftco-animate">
@@ -32,7 +34,7 @@ function User_Footer() {
           </div>
           <div className="col-md-4">
             <div className="ftco-footer-widget mb-4">
-              <h2 className="ftco-heading-2">Recent Blog</h2>
+              <h2 className="ftco-heading-2">Our Focus Areas</h2>
               <div className="block-21 mb-4 d-flex">
                 <a
                   className="blog-img mr-4"

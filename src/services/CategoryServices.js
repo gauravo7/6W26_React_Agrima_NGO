@@ -1,6 +1,6 @@
 import { data } from "react-router-dom"
 import { CategoryModel } from "../model/CategoryModel"
-import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore"
 import { db } from "../../firebase"
 
 class CategoryServices {
@@ -57,6 +57,46 @@ class CategoryServices {
       
     }
   }
+
+
+  async Single(id){
+     try{
+
+      let res = await getDoc(doc(db,"category",id))
+ 
+      let catedata = res.data();
+
+      return catedata
+
+     }
+     catch(err){
+      console.log(err)
+     }
+  }
+
+
+  async Update(data,id){
+
+   console.log(id);
+
+    try {
+      
+      let obj = new CategoryModel()
+      obj.CategoryName = data.CategoryName
+      obj.Description = data.Description
+
+      await updateDoc(doc(db,"category",id),{ ...obj })
+
+       return 1
+
+    } catch (error) {
+
+      console.log(error.message);
+      return 0
+
+    }
+  }
+
 }
 
 export default new CategoryServices

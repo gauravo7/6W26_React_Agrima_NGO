@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { FadeLoader } from "react-spinners"
 import { toast } from "react-toastify"
+import UserServices from "../../services/UserServices";
 
 export default function Register() {
 
@@ -13,36 +14,31 @@ export default function Register() {
     const [load, setLoad] = useState(false);
     const nav = useNavigate();
 
-    const HandleForm = (e) => {
+    const HandleForm =async (e) => {
         e.preventDefault()
-        if (!name || !email || !phone || !password || !confirmPassword) {
-            toast.error("Please fill all fields");
-            return;
-        }
+       
 
-        if (password !== confirmPassword) {
-            toast.error("Passwords do not match");
-            return;
-        }
+        // if (password !== confirmPassword) {
+        //     toast.error("Passwords do not match");
+        //     return;
+        // }
         setLoad(true)
 
-        console.log(name);
-        console.log(email);
-        console.log(password);
-
-        if (email == "admin@gmail.com" && password == "1234") {
-
-            setTimeout(() => {
-                setLoad(false)
-                toast.success("Registration Successful");
-                nav("/login");
-
-            }, 3000);
-
-        } else {
-            setLoad(false)
-            toast.error("Registration Fail")
+        let data={
+            name,
+            email,
+            password
         }
+
+         let res=await   UserServices.Register(data)
+         if(res==1){
+            toast.success("register successfully")
+            nav("/")
+         }else{
+            toast.error("Try again")
+         }
+
+       setLoad(false)
     }
 
 

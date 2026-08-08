@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import CategoryServices from "../../../services/CategoryServices";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function AddCategory() {
 
     const [Data, setData] = useState([]);
 
+    const nav = useNavigate();
 
     useEffect(() => {
         FatchData()
@@ -17,21 +20,35 @@ export default function AddCategory() {
 
     }
 
-    const deleteCategory= async (id)=>{
+    const deleteCategory = async (id) => {
+
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+
+                let res = await CategoryServices.delete(id)
+
+                if (res) {
+                    toast.success("Category Deleted")
+                    FatchData()
+
+                } else {
+                    toast.error("There is an error")
+                }
+            }
+        });
+
         // console.log("Category deleted", id);
 
-       let res= await CategoryServices.delete(id)
 
-       if(res){
-        toast.success("Category Deleted")
-        FatchData()
-
-       }else{
-        toast.error("There is an error")
-       }
-
-
-        
     }
 
     return (
@@ -74,11 +91,11 @@ export default function AddCategory() {
             <>
                 <section className="ftco-section contact-section ftco-degree-bg">
                     <div className="container  d-flex justify-content-center" >
-                        <div className="row " style={{ width: "500px" }}>
+                        <div className="row">
                             <div className="col-md-12 pr-md-5">
                                 <h4 className="mb-4">Category Details</h4>
 
-                                <table class="table">
+                                <table class="table table-striped table-bordered ">
 
                                     <thead>
                                         <tr>
@@ -96,10 +113,22 @@ export default function AddCategory() {
                                                     <th scope="row">{i + 1}</th>
                                                     <td>{el.CategoryName}</td>
                                                     <td>{el.Description}</td>
-                                                    <td><button onClick={()=>{
+                                                    <td><button onClick={() => {
                                                         deleteCategory(el.id)
-                                                    }} className="btn btn-danger"> <i class="bi bi-trash3-fill"></i></button></td>
-                                                    <td>{el.Status ? "Active" : "Inactive"}</td>
+                                                    }} className="btn btn-danger mx-3"> <i class="bi bi-trash3-fill"></i></button>
+                                                    
+                                                     <button className="btn btn-warning" onClick={() =>{
+                                                        nav(`/admin/category/updatecategory/${el.id}`)
+                                                     }}>
+                                                        <i class="bi bi-pencil-fill"></i>
+                                                      </button>
+                                                    </td>
+                                                    <td>{el.Status ? "Active" : "Inactive"}
+
+
+                                                     
+
+                                                    </td>
                                                 </tr>
                                             ))
                                         }

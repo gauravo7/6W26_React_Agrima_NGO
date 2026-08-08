@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import AuthServices from "../../services/AuthServices";
+import { toast } from "react-toastify";
 
 export default function Admin_Header() {
+
+    const nav=useNavigate()
+
+    const logout=()=>{
+        AuthServices.clear()
+        toast.success("Logout Successfully")
+        nav("/login")
+    }
     return (
 
         <>
@@ -44,6 +54,10 @@ export default function Admin_Header() {
 
                             <li className="nav-item active">
                                 <Link to="/admin/campaign/managecampaign" className="nav-link"> Manage Campaign </Link>
+                            </li>
+
+                              <li className="nav-item active">
+                                <button onClick={logout} className="btn btn-primary nav-link"> Logout </button>
                             </li>
 
                         </ul>

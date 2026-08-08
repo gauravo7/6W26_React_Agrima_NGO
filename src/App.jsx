@@ -20,6 +20,7 @@ import AddCampaign from "./components/admin/campaign/AddCampaign"
 import ManageCampaign from "./components/admin/campaign/ManageCampaign"
 import Causes from "./components/user/Causes"
 import Category from "./components/user/Category"
+import UpdateCategory from "./components/admin/category/UpdateCategory"
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
             <Route path="/admin" element={<Dashboard></Dashboard>} ></Route>
             <Route path="/admin/category/addcategory" element={<AddCategory></AddCategory>}></Route>
             <Route path="/admin/category/managecategory" element={<ManageCategory></ManageCategory>}></Route>
+            <Route path="/admin/category/updatecategory/:id" element={<UpdateCategory></UpdateCategory>}></Route>
             <Route path="/admin/campaign/addcampaign" element={<AddCampaign></AddCampaign>} ></Route>
             <Route path="/admin/campaign/managecampaign" element={<ManageCampaign></ManageCampaign>}></Route>
           </Route>

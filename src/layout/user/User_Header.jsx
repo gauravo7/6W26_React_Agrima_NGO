@@ -1,7 +1,20 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import AuthServices from "../../services/AuthServices"
+import { toast } from "react-toastify"
 
 
 function User_Header() {
+
+    const nav = useNavigate()
+
+    let isLogin = AuthServices.getisLogin()
+
+    const logout = () => {
+        AuthServices.clear()
+        toast.success("Logout Successfully")
+        nav("/login")
+    }
+
     return (
         <>
             <nav
@@ -52,12 +65,24 @@ function User_Header() {
                             <li className="nav-item">
                                 <Link to="/contact" className="nav-link"> Contact</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to="/login" className="nav-link"> Login</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/register" className="nav-link"> Register</Link>
-                            </li>
+                            {
+                                isLogin ?
+
+                                    <li className="nav-item active">
+                                        <button onClick={logout} className="btn btn-primary nav-link"> Logout </button>
+                                    </li>
+                                    :
+                                    <>
+                                        <li className="nav-item">
+                                            <Link to="/login" className="nav-link"> Login</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link to="/register" className="nav-link"> Register</Link>
+                                        </li>
+                                    </>
+                            }
+
+
                         </ul>
                     </div>
                 </div>

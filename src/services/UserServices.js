@@ -1,6 +1,8 @@
-import { doc, getDoc } from "firebase/firestore"
+import { addDoc, doc, getDoc, setDoc } from "firebase/firestore"
 import { auth, db } from "../../firebase"
-import { signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import AuthServices from "./AuthServices"
+import { UserModel } from "../model/UserModel"
 
 
 class UserServices{
@@ -16,10 +18,10 @@ class UserServices{
 
 
             console.log(UserDocs);
-            
-
-
+        
             let userData= UserDocs.data();
+
+            AuthServices.setData(userData, uid)
 
             return userData.userType
 
@@ -29,6 +31,31 @@ class UserServices{
             return 0
         }
         
+    }
+
+    async Register(data){
+        try {
+
+          let usercreeds=await  createUserWithEmailAndPassword(auth,data.email, data.password)
+          let uid= usercreeds.user.uid
+
+          let obj=new UserModel()
+          obj.name=data.name
+          obj.email=data.email
+
+         await setDoc(doc(db,"users", uid), {...obj})
+
+
+         AuthServices.setData({...obj}, uid)
+         return 1
+         
+          
+            
+        } catch (error) {
+            console.log(error);
+            return 0
+            
+        }
     }
 
 }

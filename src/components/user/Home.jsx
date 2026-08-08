@@ -1,4 +1,23 @@
+import { useEffect, useState } from "react";
+import CampaignServices from "../../services/CampaignServices";
+
 function Home() {
+    const [campaigns, setCampaigns] = useState([]);
+
+    useEffect(() => {
+        fetchCampaigns();
+    }, [])
+
+    const fetchCampaigns = async () => {
+        try {
+            const data = await CampaignServices.all();
+            setCampaigns(data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <>
             <div
@@ -20,21 +39,23 @@ function Home() {
                                 className="mb-4"
                                 data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
                             >
-                                Doing Nothing is Not An Option of Our Life
+                                Together We Can Build a Better Tomorrow
                             </h1>
+
                             <p
                                 className="mb-5"
                                 data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
                             >
-                                Created by <a href="#">Colorlib.com</a>
+                                Join us in supporting education, healthcare, environmental conservation,
+                                hunger relief, and elderly care. Every donation creates hope and transforms lives.
                             </p>
+
                             <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
                                 <a
-                                    href="https://vimeo.com/45830194"
-                                    className="btn btn-white btn-outline-white px-4 py-3 popup-vimeo"
+                                    href="/causes"
+                                    className="btn btn-white btn-outline-white px-4 py-3"
                                 >
-                                    <span className="icon-play mr-2" />
-                                    Watch Video
+                                    Explore Campaigns
                                 </a>
                             </p>
                         </div>
@@ -47,24 +68,28 @@ function Home() {
                         <div className="col-md-5 d-flex justify-content-center counter-wrap ftco-animate">
                             <div className="block-18 color-1 align-items-stretch">
                                 <div className="text">
-                                    <span>Served Over</span>
-                                    <strong className="number" data-number={1432805}>
-                                        0
+                                    <span>Supporting</span>
+
+                                    <strong className="number">
+                                        {campaigns.length}
                                     </strong>
-                                    <span>Children in 190 countries in the world</span>
+
+                                    <span>Active Campaigns</span>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md d-flex justify-content-center counter-wrap ftco-animate">
                             <div className="block-18 color-2 align-items-stretch">
                                 <div className="text">
-                                    <h3 className="mb-4">Donate Money</h3>
+                                    <h3 className="mb-4">Donate Today</h3>
+
                                     <p>
-                                        Even the all-powerful Pointing has no control about the blind
-                                        texts.
+                                        Your contribution helps provide education, food, healthcare, clean water,
+                                        and support to those who need it most.
                                     </p>
+
                                     <p>
-                                        <a href="#" className="btn btn-white px-3 py-2 mt-2">
+                                        <a href="/causes" className="btn btn-white px-3 py-2 mt-2">
                                             Donate Now
                                         </a>
                                     </p>
@@ -74,14 +99,16 @@ function Home() {
                         <div className="col-md d-flex justify-content-center counter-wrap ftco-animate">
                             <div className="block-18 color-3 align-items-stretch">
                                 <div className="text">
-                                    <h3 className="mb-4">Be a Volunteer</h3>
+                                    <h3 className="mb-4">Become a Volunteer</h3>
+
                                     <p>
-                                        Even the all-powerful Pointing has no control about the blind
-                                        texts.
+                                        Join our dedicated team of volunteers and help create lasting positive
+                                        change in communities through meaningful social initiatives.
                                     </p>
+
                                     <p>
-                                        <a href="#" className="btn btn-white px-3 py-2 mt-2">
-                                            Be A Volunteer
+                                        <a href="/contact" className="btn btn-white px-3 py-2 mt-2">
+                                            Join Us
                                         </a>
                                     </p>
                                 </div>
@@ -99,10 +126,11 @@ function Home() {
                                     <span className="flaticon-donation-1" />
                                 </div>
                                 <div className="media-body pl-4">
-                                    <h3 className="heading">Make Donation</h3>
+                                    <h3 className="heading">Support a Cause</h3>
                                     <p>
-                                        Even the all-powerful Pointing has no control about the blind
-                                        texts it is an almost unorthographic.
+                                        Every donation helps provide education, healthcare, food, clean water,
+                                        and essential resources to people in need. Together, we can create a
+                                        lasting impact.
                                     </p>
                                 </div>
                             </div>
@@ -113,10 +141,10 @@ function Home() {
                                     <span className="flaticon-charity" />
                                 </div>
                                 <div className="media-body pl-4">
-                                    <h3 className="heading">Become A Volunteer</h3>
+                                    <h3 className="heading">Become a Volunteer</h3>
                                     <p>
-                                        Even the all-powerful Pointing has no control about the blind
-                                        texts it is an almost unorthographic.
+                                        Join our passionate volunteers in organizing campaigns, supporting
+                                        communities, and making a real difference through your time and skills.
                                     </p>
                                 </div>
                             </div>
@@ -127,10 +155,11 @@ function Home() {
                                     <span className="flaticon-donation" />
                                 </div>
                                 <div className="media-body pl-4">
-                                    <h3 className="heading">Sponsorship</h3>
+                                    <h3 className="heading">Our Mission</h3>
                                     <p>
-                                        Even the all-powerful Pointing has no control about the blind
-                                        texts it is an almost unorthographic.
+                                        We strive to empower communities by supporting education, environmental
+                                        conservation, healthcare, elderly care, and hunger relief through
+                                        transparent and impactful initiatives.
                                     </p>
                                 </div>
                             </div>
@@ -142,217 +171,112 @@ function Home() {
                 <div className="container-fluid">
                     <div className="row justify-content-center mb-5 pb-3">
                         <div className="col-md-5 heading-section ftco-animate text-center">
-                            <h2 className="mb-4">Our Causes</h2>
+                            <h2 className="mb-4">Our Impact</h2>
+
                             <p>
-                                Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts.
+                                We are committed to creating positive change through education,
+                                environmental conservation, healthcare, hunger relief, elderly care,
+                                and animal welfare. Every initiative brings hope to those who need it
+                                the most.
                             </p>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12 ftco-animate">
-                            <div className="carousel-cause owl-carousel">
-                                <div className="item">
+                            <div className="row">
+                                <div className="col-md-4 mb-4">
                                     <div className="cause-entry">
                                         <a
                                             href="#"
                                             className="img"
-                                            style={{ backgroundImage: "url(images/cause-1.jpg)" }}
+                                            style={{ backgroundImage: "url(images/education.jpg)" }}
                                         />
                                         <div className="text p-3 p-md-4">
-                                            <h3>
-                                                <a href="#">Clean water for the urban area</a>
-                                            </h3>
+                                            <h3>Education for Every Child</h3>
                                             <p>
-                                                Even the all-powerful Pointing has no control about the
-                                                blind texts it is an almost unorthographic life
+                                                Providing books, school supplies, scholarships, and quality education
+                                                to children from underprivileged communities.
                                             </p>
-                                            <span className="donation-time mb-3 d-block">
-                                                Last donation 1w ago
-                                            </span>
-                                            <div className="progress custom-progress-success">
-                                                <div
-                                                    className="progress-bar bg-primary"
-                                                    role="progressbar"
-                                                    style={{ width: "28%" }}
-                                                    aria-valuenow={28}
-                                                    aria-valuemin={0}
-                                                    aria-valuemax={100}
-                                                />
-                                            </div>
-                                            <span className="fund-raised d-block">
-                                                $12,000 raised of $30,000
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="item">
+                                <div className="col-md-4 mb-4">
                                     <div className="cause-entry">
                                         <a
                                             href="#"
                                             className="img"
-                                            style={{ backgroundImage: "url(images/cause-2.jpg)" }}
+                                            style={{ backgroundImage: "url(images/environment.jpg)" }}
                                         />
                                         <div className="text p-3 p-md-4">
-                                            <h3>
-                                                <a href="#">Clean water for the urban area</a>
-                                            </h3>
+                                            <h3>Protect Our Environment</h3>
                                             <p>
-                                                Even the all-powerful Pointing has no control about the
-                                                blind texts it is an almost unorthographic life
+                                                Supporting tree plantation drives, waste reduction, and awareness
+                                                programs to build a cleaner and greener future.
                                             </p>
-                                            <span className="donation-time mb-3 d-block">
-                                                Last donation 1w ago
-                                            </span>
-                                            <div className="progress custom-progress-success">
-                                                <div
-                                                    className="progress-bar bg-primary"
-                                                    role="progressbar"
-                                                    style={{ width: "28%" }}
-                                                    aria-valuenow={28}
-                                                    aria-valuemin={0}
-                                                    aria-valuemax={100}
-                                                />
-                                            </div>
-                                            <span className="fund-raised d-block">
-                                                $12,000 raised of $30,000
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="item">
+                                <div className="col-md-4 mb-4">
                                     <div className="cause-entry">
                                         <a
                                             href="#"
                                             className="img"
-                                            style={{ backgroundImage: "url(images/cause-3.jpg)" }}
+                                            style={{ backgroundImage: "url(images/water.jpg)" }}
                                         />
                                         <div className="text p-3 p-md-4">
-                                            <h3>
-                                                <a href="#">Clean water for the urban area</a>
-                                            </h3>
+                                            <h3>Clean Water for All</h3>
                                             <p>
-                                                Even the all-powerful Pointing has no control about the
-                                                blind texts it is an almost unorthographic life
+                                                Helping communities gain access to safe drinking water through
+                                                sustainable water conservation and purification projects.
                                             </p>
-                                            <span className="donation-time mb-3 d-block">
-                                                Last donation 1w ago
-                                            </span>
-                                            <div className="progress custom-progress-success">
-                                                <div
-                                                    className="progress-bar bg-primary"
-                                                    role="progressbar"
-                                                    style={{ width: "28%" }}
-                                                    aria-valuenow={28}
-                                                    aria-valuemin={0}
-                                                    aria-valuemax={100}
-                                                />
-                                            </div>
-                                            <span className="fund-raised d-block">
-                                                $12,000 raised of $30,000
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="item">
+                                <div className="col-md-4 mb-4">
                                     <div className="cause-entry">
                                         <a
                                             href="#"
                                             className="img"
-                                            style={{ backgroundImage: "url(images/cause-4.jpg)" }}
+                                            style={{ backgroundImage: "url(images/food.jpg)" }}
                                         />
                                         <div className="text p-3 p-md-4">
-                                            <h3>
-                                                <a href="#">Clean water for the urban area</a>
-                                            </h3>
+                                            <h3>Hunger Relief</h3>
                                             <p>
-                                                Even the all-powerful Pointing has no control about the
-                                                blind texts it is an almost unorthographic life
+                                                Providing nutritious meals and food kits to families facing hunger
+                                                through community kitchens and food distribution drives.
                                             </p>
-                                            <span className="donation-time mb-3 d-block">
-                                                Last donation 1w ago
-                                            </span>
-                                            <div className="progress custom-progress-success">
-                                                <div
-                                                    className="progress-bar bg-primary"
-                                                    role="progressbar"
-                                                    style={{ width: "28%" }}
-                                                    aria-valuenow={28}
-                                                    aria-valuemin={0}
-                                                    aria-valuemax={100}
-                                                />
-                                            </div>
-                                            <span className="fund-raised d-block">
-                                                $12,000 raised of $30,000
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="item">
+                                <div className="col-md-4 mb-4">
                                     <div className="cause-entry">
                                         <a
                                             href="#"
                                             className="img"
-                                            style={{ backgroundImage: "url(images/cause-5.jpg)" }}
+                                            style={{ backgroundImage: "url(images/elderly.jpg)" }}
                                         />
                                         <div className="text p-3 p-md-4">
-                                            <h3>
-                                                <a href="#">Clean water for the urban area</a>
-                                            </h3>
+                                            <h3>Care for Senior Citizens</h3>
                                             <p>
-                                                Even the all-powerful Pointing has no control about the
-                                                blind texts it is an almost unorthographic life
+                                                Supporting elderly people with healthcare, nutritious meals, shelter,
+                                                and emotional care to improve their quality of life.
                                             </p>
-                                            <span className="donation-time mb-3 d-block">
-                                                Last donation 1w ago
-                                            </span>
-                                            <div className="progress custom-progress-success">
-                                                <div
-                                                    className="progress-bar bg-primary"
-                                                    role="progressbar"
-                                                    style={{ width: "28%" }}
-                                                    aria-valuenow={28}
-                                                    aria-valuemin={0}
-                                                    aria-valuemax={100}
-                                                />
-                                            </div>
-                                            <span className="fund-raised d-block">
-                                                $12,000 raised of $30,000
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="item">
+                                <div className="col-md-4 mb-4">
                                     <div className="cause-entry">
                                         <a
                                             href="#"
                                             className="img"
-                                            style={{ backgroundImage: "url(images/cause-6.jpg)" }}
+                                            style={{ backgroundImage: "url(images/animal.jpeg)" }}
                                         />
                                         <div className="text p-3 p-md-4">
-                                            <h3>
-                                                <a href="#">Clean water for the urban area</a>
-                                            </h3>
+                                            <h3>Animal Welfare</h3>
                                             <p>
-                                                Even the all-powerful Pointing has no control about the
-                                                blind texts it is an almost unorthographic life
+                                                Rescuing, treating, and providing shelter for abandoned and injured
+                                                animals while promoting compassion and responsible care.
                                             </p>
-                                            <span className="donation-time mb-3 d-block">
-                                                Last donation 1w ago
-                                            </span>
-                                            <div className="progress custom-progress-success">
-                                                <div
-                                                    className="progress-bar bg-primary"
-                                                    role="progressbar"
-                                                    style={{ width: "28%" }}
-                                                    aria-valuenow={28}
-                                                    aria-valuemin={0}
-                                                    aria-valuemax={100}
-                                                />
-                                            </div>
-                                            <span className="fund-raised d-block">
-                                                $12,000 raised of $30,000
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -365,10 +289,12 @@ function Home() {
                 <div className="container">
                     <div className="row justify-content-center mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate text-center">
-                            <h2 className="mb-4">Latest Donations</h2>
+                            <h2 className="mb-4">Success Stories</h2>
+
                             <p>
-                                Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts.
+                                Every campaign we complete creates a lasting impact on individuals,
+                                families, and communities. Here are some of the positive changes made
+                                possible through the support of our volunteers and donors.
                             </p>
                         </div>
                     </div>
@@ -378,17 +304,15 @@ function Home() {
                                 <div className="d-flex mb-4">
                                     <div
                                         className="img"
-                                        style={{ backgroundImage: "url(images/person_1.jpg)" }}
+                                        style={{ backgroundImage: "url(images/education1.jpg)" }}
                                     />
                                     <div className="info ml-4">
                                         <h3>
-                                            <a href="teacher-single.html">Ivan Jacobson</a>
+                                            Education for Every Child
                                         </h3>
-                                        <span className="position">Donated Just now</span>
                                         <div className="text">
                                             <p>
-                                                Donated <span>$300</span> for{" "}
-                                                <a href="#">Children Needs Food</a>
+                                                With the support of generous donors, hundreds of children received school supplies, books, uniforms, and scholarships, giving them a chance to continue their education with confidence.
                                             </p>
                                         </div>
                                     </div>
@@ -400,17 +324,15 @@ function Home() {
                                 <div className="d-flex mb-4">
                                     <div
                                         className="img"
-                                        style={{ backgroundImage: "url(images/person_2.jpg)" }}
+                                        style={{ backgroundImage: "url(images/greener.jpg)" }}
                                     />
                                     <div className="info ml-4">
                                         <h3>
-                                            <a href="teacher-single.html">Ivan Jacobson</a>
+                                            Greener Tomorrow
                                         </h3>
-                                        <span className="position">Donated Just now</span>
                                         <div className="text">
                                             <p>
-                                                Donated <span>$150</span> for{" "}
-                                                <a href="#">Children Needs Food</a>
+                                                Our environmental campaign helped plant thousands of trees and inspired local communities to participate in keeping their surroundings clean and green.
                                             </p>
                                         </div>
                                     </div>
@@ -422,17 +344,15 @@ function Home() {
                                 <div className="d-flex mb-4">
                                     <div
                                         className="img"
-                                        style={{ backgroundImage: "url(images/person_3.jpg)" }}
+                                        style={{ backgroundImage: "url(images/food1.png)" }}
                                     />
                                     <div className="info ml-4">
                                         <h3>
-                                            <a href="teacher-single.html">Ivan Jacobson</a>
+                                            Meals for Families
                                         </h3>
-                                        <span className="position">Donated Just now</span>
                                         <div className="text">
                                             <p>
-                                                Donated <span>$250</span> for{" "}
-                                                <a href="#">Children Needs Food</a>
+                                                Food distribution drives provided nutritious meals to families facing hardship, ensuring that no one in the community had to sleep hungry.
                                             </p>
                                         </div>
                                     </div>
@@ -442,7 +362,7 @@ function Home() {
                     </div>
                 </div>
             </section>
-            <section className="ftco-gallery">
+            {/* <section className="ftco-gallery">
                 <div className="d-md-flex">
                     <a
                         href="images/cause-2.jpg"
@@ -519,15 +439,15 @@ function Home() {
                         </div>
                     </a>
                 </div>
-            </section>
+            </section> */}
             <section className="ftco-section">
                 <div className="container">
                     <div className="row justify-content-center mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate text-center">
-                            <h2 className="mb-4">Recent from blog</h2>
+                            <h2 className="mb-4">Upcoming Events</h2>
                             <p>
-                                Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts.
+                                Join us in our upcoming community initiatives and be a part of creating
+                                positive change. Every event is an opportunity to make a difference.
                             </p>
                         </div>
                     </div>
@@ -537,15 +457,15 @@ function Home() {
                                 <a
                                     href="blog-single.html"
                                     className="block-20"
-                                    style={{ backgroundImage: 'url("images/image_1.jpg")' }}
+                                    style={{ backgroundImage: 'url("images/tree-plantation.jpg")' }}
                                 ></a>
                                 <div className="text p-4 d-block">
                                     <div className="meta mb-3">
                                         <div>
-                                            <a href="#">Sept 10, 2018</a>
+                                            <a href="#">15 August 2026</a>
                                         </div>
                                         <div>
-                                            <a href="#">Admin</a>
+                                            <a href="#">Green Earth Team</a>
                                         </div>
                                         <div>
                                             <a href="#" className="meta-chat">
@@ -554,11 +474,10 @@ function Home() {
                                         </div>
                                     </div>
                                     <h3 className="heading mt-3">
-                                        <a href="#">Hurricane Irma has devastated Florida</a>
+                                        <a href="#">Tree Plantation Drive</a>
                                     </h3>
                                     <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
+                                        Join us in planting over 500 trees to promote a greener environment and create a healthier future for our community.
                                     </p>
                                 </div>
                             </div>
@@ -568,15 +487,15 @@ function Home() {
                                 <a
                                     href="blog-single.html"
                                     className="block-20"
-                                    style={{ backgroundImage: 'url("images/image_2.jpg")' }}
+                                    style={{ backgroundImage: 'url("images/education-drive.webp")' }}
                                 ></a>
                                 <div className="text p-4 d-block">
                                     <div className="meta mb-3">
                                         <div>
-                                            <a href="#">Sept 10, 2018</a>
+                                            <a href="#">28 August 2026</a>
                                         </div>
                                         <div>
-                                            <a href="#">Admin</a>
+                                            <a href="#">Education Team</a>
                                         </div>
                                         <div>
                                             <a href="#" className="meta-chat">
@@ -585,11 +504,10 @@ function Home() {
                                         </div>
                                     </div>
                                     <h3 className="heading mt-3">
-                                        <a href="#">Hurricane Irma has devastated Florida</a>
+                                        <a href="#">Back to school campaign</a>
                                     </h3>
                                     <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
+                                        Help distribute books, school bags, and learning materials to children from underprivileged families.
                                     </p>
                                 </div>
                             </div>
@@ -599,15 +517,15 @@ function Home() {
                                 <a
                                     href="blog-single.html"
                                     className="block-20"
-                                    style={{ backgroundImage: 'url("images/image_3.jpg")' }}
+                                    style={{ backgroundImage: 'url("images/health-camp.jpg")' }}
                                 ></a>
                                 <div className="text p-4 d-block">
                                     <div className="meta mb-3">
                                         <div>
-                                            <a href="#">Sept 10, 2018</a>
+                                            <a href="#">10 September 2026</a>
                                         </div>
                                         <div>
-                                            <a href="#">Admin</a>
+                                            <a href="#">Medical Volunteers</a>
                                         </div>
                                         <div>
                                             <a href="#" className="meta-chat">
@@ -616,11 +534,10 @@ function Home() {
                                         </div>
                                     </div>
                                     <h3 className="heading mt-3">
-                                        <a href="#">Hurricane Irma has devastated Florida</a>
+                                        <a href="#">Free Health Check-up Camp</a>
                                     </h3>
                                     <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
+                                        A free medical camp offering health check-ups, consultations, and essential medicines for senior citizens and low-income families.
                                     </p>
                                 </div>
                             </div>
@@ -628,146 +545,80 @@ function Home() {
                     </div>
                 </div>
             </section>
-            <section className="ftco-section bg-light">
+            
+                    
+            <section className="ftco-section">
                 <div className="container">
                     <div className="row justify-content-center mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate text-center">
-                            <h2 className="mb-4">Our Latest Events</h2>
+                            <h2 className="mb-4">Causes</h2>
+                            <p>
+                                Join us in our upcoming community initiatives and be a part of creating
+                                positive change. Every event is an opportunity to make a difference.
+                            </p>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-4 d-flex ftco-animate">
-                            <div className="blog-entry align-self-stretch">
-                                <a
-                                    href="blog-single.html"
-                                    className="block-20"
-                                    style={{ backgroundImage: 'url("images/event-1.jpg")' }}
-                                ></a>
-                                <div className="text p-4 d-block">
-                                    <div className="meta mb-3">
-                                        <div>
-                                            <a href="#">Sep. 10, 2018</a>
-                                        </div>
-                                        <div>
-                                            <a href="#">Admin</a>
-                                        </div>
-                                        <div>
-                                            <a href="#" className="meta-chat">
-                                                <span className="icon-chat" /> 3
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <h3 className="heading mb-4">
-                                        <a href="#">World Wide Donation</a>
-                                    </h3>
-                                    <p className="time-loc">
-                                        <span className="mr-2">
-                                            <i className="icon-clock-o" /> 10:30AM-03:30PM
-                                        </span>{" "}
-                                        <span>
-                                            <i className="icon-map-o" /> Venue Main Campus
-                                        </span>
-                                    </p>
-                                    <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
-                                    </p>
-                                    <p>
-                                        <a href="event.html">
-                                            Join Event <i className="ion-ios-arrow-forward" />
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-4 d-flex ftco-animate">
-                            <div className="blog-entry align-self-stretch">
-                                <a
-                                    href="blog-single.html"
-                                    className="block-20"
-                                    style={{ backgroundImage: 'url("images/event-2.jpg")' }}
-                                ></a>
-                                <div className="text p-4 d-block">
-                                    <div className="meta mb-3">
-                                        <div>
-                                            <a href="#">Sep. 10, 2018</a>
-                                        </div>
-                                        <div>
-                                            <a href="#">Admin</a>
-                                        </div>
-                                        <div>
-                                            <a href="#" className="meta-chat">
-                                                <span className="icon-chat" /> 3
-                                            </a>
+
+                        {
+                            campaigns.slice(0,6).map((item) => {
+                                const progress =
+                                    Number(item.TargetAmount) > 0
+                                        ? Math.min(
+                                            (Number(item.CollectedAmount) / Number(item.TargetAmount)) * 100,
+                                            100
+                                        )
+                                        : 0;
+
+
+                                console.log(progress);
+
+                                console.log("Target:", item.TargetAmount);
+                                console.log("Collected:", item.CollectedAmount);
+                                console.log(typeof item.TargetAmount);
+                                console.log(typeof item.CollectedAmount);
+
+                                return (
+                                    <div className="col-md-4 ftco-animate" key={item.id}>
+                                        <div className="cause-entry">
+                                            <a
+                                                href="#"
+                                                className="img"
+                                                style={{
+                                                    backgroundImage: `url(${item.ImageUrl})`,
+                                                }}
+                                            />
+
+                                            <div className="text p-3 p-md-4">
+                                                <h3>
+                                                    <a href="#">{item.Title}</a>
+                                                </h3>
+
+                                                <p>{item.Description}</p>
+
+                                                <div className="progress custom-progress-success">
+                                                    <div
+                                                        className="progress-bar bg-primary"
+                                                        role="progressbar"
+                                                        style={{ width: `${progress}%` }}
+                                                        aria-valuenow={progress}
+                                                        aria-valuemin={0}
+                                                        aria-valuemax={100}
+                                                    >
+                                                        {/* {progress.toFixed(0)} */}
+                                                    </div>
+                                                </div>
+
+                                                <span className="fund-raised d-block">
+                                                    ₹{item.CollectedAmount} raised of ₹ {item.TargetAmount}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <h3 className="heading mb-4">
-                                        <a href="#">World Wide Donation</a>
-                                    </h3>
-                                    <p className="time-loc">
-                                        <span className="mr-2">
-                                            <i className="icon-clock-o" /> 10:30AM-03:30PM
-                                        </span>{" "}
-                                        <span>
-                                            <i className="icon-map-o" /> Venue Main Campus
-                                        </span>
-                                    </p>
-                                    <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
-                                    </p>
-                                    <p>
-                                        <a href="event.html">
-                                            Join Event <i className="ion-ios-arrow-forward" />
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-4 d-flex ftco-animate">
-                            <div className="blog-entry align-self-stretch">
-                                <a
-                                    href="blog-single.html"
-                                    className="block-20"
-                                    style={{ backgroundImage: 'url("images/event-3.jpg")' }}
-                                ></a>
-                                <div className="text p-4 d-block">
-                                    <div className="meta mb-3">
-                                        <div>
-                                            <a href="#">Sep. 10, 2018</a>
-                                        </div>
-                                        <div>
-                                            <a href="#">Admin</a>
-                                        </div>
-                                        <div>
-                                            <a href="#" className="meta-chat">
-                                                <span className="icon-chat" /> 3
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <h3 className="heading mb-4">
-                                        <a href="#">World Wide Donation</a>
-                                    </h3>
-                                    <p className="time-loc">
-                                        <span className="mr-2">
-                                            <i className="icon-clock-o" /> 10:30AM-03:30PM
-                                        </span>{" "}
-                                        <span>
-                                            <i className="icon-map-o" /> Venue Main Campus
-                                        </span>
-                                    </p>
-                                    <p>
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia.
-                                    </p>
-                                    <p>
-                                        <a href="event.html">
-                                            Join Event <i className="ion-ios-arrow-forward" />
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                                );
+                            })
+                        }
+
                     </div>
                 </div>
             </section>
